@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:happiness_path/splashPager.dart';
 
 const double pi = 3.1415926535897932;
 
@@ -129,43 +130,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   Widget _buildPagerAnimation(BuildContext context, Widget child) {
     return Transform.scale(
       scale: _scalePageView.value,
-      child: PageView(
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Expanded(
-                child: Image(image: AssetImage('assets/ic_loupe.png')),
-              ),
-              Text('Découvrez'),
-              Text('Découvrez nos dix tendances de conception mobile en 2020, présentées  à travers un parcours bancaire.')
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Expanded(
-                child: SvgPicture.asset(
-                    'notification.svg',
-                    semanticsLabel: 'Expérimentez'
-                ),
-              ),
-              Text('Expérimentez'),
-              Text('Promenez vous sur l’application et cliquez sur les pastilles pour en apprendre plus')
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Expanded(
-                child: SvgPicture.asset(
-                    'diamond.svg',
-                    semanticsLabel: 'Lancez vous !'
-                ),
-              ),
-              Text('Lancez vous !'),
-              Text('Découvrez nos dix tendances de conception mobile en 2020, présentées  à travers un parcours bancaire.')
-            ],
-          ),
-        ],
-      ),
+      child: SplashPager(),
     );
   }
 
