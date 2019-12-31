@@ -19,7 +19,7 @@ class EndOfListCell extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('Vous avez atteint la fin de la liste'),
+              child: Text('Vous avez atteint la fin de la liste', textAlign: TextAlign.center,),
             ),
           ),
           Container(
