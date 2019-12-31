@@ -94,10 +94,13 @@ class OperationHeaderState extends State<OperationHeader> {
                 ),
                 Container(
                     height: _height,
-                    child: ConstrainedBox(
-                        constraints:
-                            const BoxConstraints(minWidth: double.infinity),
-                        child: OperationCurve())),
+                    child: Opacity(
+                      opacity: _height / 200,
+                      child: ConstrainedBox(
+                          constraints:
+                              const BoxConstraints(minWidth: double.infinity),
+                          child: OperationCurve()),
+                    )),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 30, 0, 10.0),
                   child: Container(
