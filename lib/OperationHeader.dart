@@ -1,41 +1,15 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_lottie/flutter_lottie.dart';
 import 'package:happiness_path/colors.dart';
 
 import 'OperationCurve.dart';
 
-class OperationHeader extends StatefulWidget {
+class OperationHeader extends StatelessWidget {
   ScrollController _controller;
 
   OperationHeader(ScrollController controller) {
     _controller = controller;
-  }
-
-  @override
-  State<StatefulWidget> createState() => OperationHeaderState(_controller);
-}
-
-class OperationHeaderState extends State<OperationHeader> {
-  ScrollController _controller;
-  double _height = 200;
-
-  OperationHeaderState(ScrollController controller) {
-    _controller = controller;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _controller..addListener(_scrollListener);
-  }
-
-  void _scrollListener() {
-    var offset = _controller.offset;
-    setState(() {
-      _height = max(0, 200 - offset);
-    });
   }
 
   @override
@@ -92,15 +66,7 @@ class OperationHeaderState extends State<OperationHeader> {
                     ),
                   ),
                 ),
-                Container(
-                    height: _height,
-                    child: Opacity(
-                      opacity: _height / 200,
-                      child: ConstrainedBox(
-                          constraints:
-                              const BoxConstraints(minWidth: double.infinity),
-                          child: OperationCurve()),
-                    )),
+                OperationHeaderChild(_controller),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 30, 0, 10.0),
                   child: Container(
@@ -122,5 +88,50 @@ class OperationHeaderState extends State<OperationHeader> {
         ],
       ),
     );
+  }
+}
+
+class OperationHeaderChild extends StatefulWidget {
+  ScrollController _controller;
+
+  OperationHeaderChild(ScrollController controller) {
+    _controller = controller;
+  }
+
+  @override
+  State<StatefulWidget> createState() => OperationHeaderChildState(_controller);
+}
+
+class OperationHeaderChildState extends State<OperationHeaderChild> {
+  ScrollController _controller;
+  double _height = 200;
+
+  OperationHeaderChildState(ScrollController controller) {
+    _controller = controller;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller..addListener(_scrollListener);
+  }
+
+  void _scrollListener() {
+    var offset = _controller.offset;
+    setState(() {
+      _height = max(0, 200 - offset);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: _height,
+        child: Opacity(
+          opacity: _height / 200,
+          child: ConstrainedBox(
+              constraints: const BoxConstraints(minWidth: double.infinity),
+              child: OperationCurve()),
+        ));
   }
 }
