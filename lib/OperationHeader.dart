@@ -1,7 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_lottie/flutter_lottie.dart';
 import 'package:happiness_path/colors.dart';
+
+import 'OperationCurve.dart';
 
 class OperationHeader extends StatefulWidget {
   ScrollController _controller;
@@ -38,8 +41,7 @@ class OperationHeaderState extends State<OperationHeader> {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints:
-          const BoxConstraints(minWidth: double.infinity),
+      constraints: const BoxConstraints(minWidth: double.infinity),
       child: Wrap(
         children: <Widget>[
           Container(
@@ -91,12 +93,11 @@ class OperationHeaderState extends State<OperationHeader> {
                   ),
                 ),
                 Container(
-                  height: _height,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                  ),
-                  child: Text('Je suis le machin qui bouge'),
-                ),
+                    height: _height,
+                    child: ConstrainedBox(
+                        constraints:
+                            const BoxConstraints(minWidth: double.infinity),
+                        child: OperationCurve())),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 30, 0, 10.0),
                   child: Container(
