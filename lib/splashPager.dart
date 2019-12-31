@@ -3,7 +3,6 @@ import 'package:happiness_path/colors.dart';
 import 'package:page_indicator/page_indicator.dart';
 
 class SplashPager extends StatelessWidget {
-
   PageController _controller;
 
   @override
@@ -46,7 +45,8 @@ class SplashPager extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(40, 24.0, 40, 24),
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(minWidth: double.infinity),
+                    constraints:
+                        const BoxConstraints(minWidth: double.infinity),
                     child: RaisedButton(
                       padding: const EdgeInsets.fromLTRB(32, 8, 32, 8),
                       shape: RoundedRectangleBorder(
@@ -57,7 +57,9 @@ class SplashPager extends StatelessWidget {
                         style: buttonStyle,
                       ),
                       onPressed: () {
-                        _controller.animateToPage(1, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+                        _controller.animateToPage(1,
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.easeIn);
                       },
                     ),
                   ),
@@ -69,7 +71,7 @@ class SplashPager extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(80),
-                    child: Image(image: AssetImage('assets/ic_loupe.png')),
+                    child: Image(image: AssetImage('assets/notification.png')),
                   ),
                 ),
                 Text(
@@ -86,7 +88,8 @@ class SplashPager extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(40, 24.0, 40, 24),
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(minWidth: double.infinity),
+                    constraints:
+                        const BoxConstraints(minWidth: double.infinity),
                     child: RaisedButton(
                       padding: const EdgeInsets.fromLTRB(32, 8, 32, 8),
                       shape: RoundedRectangleBorder(
@@ -97,7 +100,9 @@ class SplashPager extends StatelessWidget {
                         style: buttonStyle,
                       ),
                       onPressed: () {
-                        _controller.animateToPage(2, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+                        _controller.animateToPage(2,
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.easeIn);
                       },
                     ),
                   ),
@@ -111,7 +116,7 @@ class SplashPager extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(80),
-                      child: Image(image: AssetImage('assets/ic_loupe.png')),
+                      child: Image(image: AssetImage('assets/diamond.png')),
                     ),
                   ),
                   Text(
@@ -128,7 +133,8 @@ class SplashPager extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(40, 24.0, 40, 24),
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(minWidth: double.infinity),
+                      constraints:
+                          const BoxConstraints(minWidth: double.infinity),
                       child: RaisedButton(
                         padding: const EdgeInsets.fromLTRB(32, 8, 32, 8),
                         shape: RoundedRectangleBorder(
@@ -138,7 +144,9 @@ class SplashPager extends StatelessWidget {
                           "C'est parti !",
                           style: buttonStyle,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/operations');
+                        },
                       ),
                     ),
                   )

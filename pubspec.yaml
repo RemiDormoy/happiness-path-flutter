@@ -48,8 +48,8 @@ flutter:
    - assets/splashpicture.png
    - assets/logo_octo_splash.png
    - assets/ic_loupe.png
-   - assets/diamond.svg
-   - assets/notification.svg
+   - assets/diamond.png
+   - assets/notification.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:happiness_path/operations.dart';
 import 'colors.dart';
 import 'home.dart';
 
@@ -13,6 +14,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: _buildTheme(context),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        '/operations' : (context) => OperationsPage(),
+      },
     );
   }
 

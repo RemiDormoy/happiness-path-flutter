@@ -17,3 +17,5 @@ const alizouzBlack = const Color(0xFF0E2356);
 const alizouzGreen = const Color(0xFF0AA192);
 const alizouzBlackWithAlpha01 = const Color(0x1A0E2356);
 const alizouzGrey = const Color(0x8A6F7073);
+const negativeCardColor = const Color(0xFFF0F1F1);
+const actionCardColor = const Color(0xFF6F7073);
