@@ -47,6 +47,7 @@ flutter:
   assets:
    - assets/splashpicture.png
    - assets/logo_octo_splash.png
+   - assets/logo_app_yolo.png
    - assets/ic_loupe.png
    - assets/diamond.png
    - assets/notification.png
