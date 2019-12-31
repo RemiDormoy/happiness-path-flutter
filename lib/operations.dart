@@ -10,16 +10,25 @@ class OperationsPage extends StatefulWidget {
 }
 
 class OperationsPageState extends State<OperationsPage> {
+
+  ScrollController _controller;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
+      body: Stack(
         children: <Widget>[
-          OperationHeader(),
-          Expanded(child: OperationList()),
+          OperationList(_controller),
+          OperationHeader(_controller),
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = ScrollController();
   }
 }
