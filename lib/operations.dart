@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:happiness_path/OperationList.dart';
 
@@ -10,17 +9,28 @@ class OperationsPage extends StatefulWidget {
 }
 
 class OperationsPageState extends State<OperationsPage> {
-
   ScrollController _controller;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
+      body: Column(
         children: <Widget>[
-          OperationList(_controller),
-          OperationHeader(_controller),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(''),
+          ),
+          Expanded(
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  child: OperationList(_controller),
+                  decoration: BoxDecoration(color: Colors.white),
+                ),
+                OperationHeader(_controller),
+              ],
+            ),
+          ),
         ],
       ),
     );

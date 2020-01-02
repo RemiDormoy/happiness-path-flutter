@@ -5,7 +5,6 @@ import 'package:happiness_path/splashPager.dart';
 const double pi = 3.1415926535897932;
 
 class MyHomePage extends StatefulWidget {
-
   MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
@@ -103,18 +102,20 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     } else {
       body = Center(
           child: Column(
-            children: <Widget>[
-              AnimatedBuilder(
-                  animation: _currentController, builder: _buildAnimation),
-              AnimatedBuilder(
-                animation: _currentController,
-                builder: _buildAnimationImage,
-              ),
-            ],
-          ));
+        children: <Widget>[
+          AnimatedBuilder(
+              animation: _currentController, builder: _buildAnimation),
+          AnimatedBuilder(
+            animation: _currentController,
+            builder: _buildAnimationImage,
+          ),
+        ],
+      ));
     }
     return Scaffold(
-      body: body,
+      body: SafeArea(
+        child: body,
+      ),
     );
   }
 
@@ -208,10 +209,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         ),
       ),
     )..addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _playPhase4();
-      }
-    });
+        if (status == AnimationStatus.completed) {
+          _playPhase4();
+        }
+      });
     _angle = Tween<double>(
       begin: 0,
       end: -pi / 6.0,
@@ -258,10 +259,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         ),
       ),
     )..addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _playPhase5();
-      }
-    });
+        if (status == AnimationStatus.completed) {
+          _playPhase5();
+        }
+      });
     _controller4.forward();
     setState(() {
       _currentController = _controller4;

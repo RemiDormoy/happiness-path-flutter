@@ -53,6 +53,16 @@ flutter:
    - assets/diamond.png
    - assets/notification.png
    - assets/curve.png
+   - assets/alizee.jpg
+   - assets/bej.jpg
+   - assets/bme.jpg
+   - assets/brm.jpg
+   - assets/cyril.jpg
+   - assets/danyboy.jpg
+   - assets/juliette.jpg
+   - assets/marie.jpg
+   - assets/megane.jpg
+   - assets/rafaelle.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

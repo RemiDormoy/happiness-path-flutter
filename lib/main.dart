@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:happiness_path/operations.dart';
+import 'package:happiness_path/transfers.dart';
 import 'colors.dart';
 import 'home.dart';
 
@@ -11,11 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'OCTO Mob Trends',
       theme: _buildTheme(context),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'OCTO Mob trends'),
       routes: {
         '/operations' : (context) => OperationsPage(),
+        '/transfers' : (context) => TransfersPage(),
       },
     );
   }
@@ -34,4 +36,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

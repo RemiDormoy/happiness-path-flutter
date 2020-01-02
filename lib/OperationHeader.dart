@@ -128,7 +128,7 @@ class OperationHeaderChildState extends State<OperationHeaderChild> {
     return Container(
         height: _height,
         child: Opacity(
-          opacity: _height / 200,
+          opacity: min(1, _height / 200),
           child: ConstrainedBox(
               constraints: const BoxConstraints(minWidth: double.infinity),
               child: OperationCurve()),

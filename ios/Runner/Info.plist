@@ -11,8 +11,6 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<key>io.flutter.embedded_views_preview</key>
-    <true />
 	<string>happiness_path</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>

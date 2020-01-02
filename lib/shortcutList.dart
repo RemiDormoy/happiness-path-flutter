@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
@@ -11,7 +10,12 @@ class ShortcutList extends StatelessWidget {
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
-            Shortcut('Transferts', alizouzBlue, Icons.compare_arrows),
+            GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/transfers');
+                },
+                child:
+                    Shortcut('Virement', alizouzBlue, Icons.compare_arrows)),
             Shortcut('Mes comptes', actionCardColor, Icons.lock),
             Shortcut('Dashboards', actionCardColor, Icons.lock),
             Shortcut('Mes cartes', actionCardColor, Icons.lock),
