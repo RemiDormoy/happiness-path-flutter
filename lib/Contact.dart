@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:happiness_path/colors.dart';
 
@@ -42,30 +41,33 @@ class ContactState extends State<Contact> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        _animateChange();
-      },
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-        child: Row(children: <Widget>[
-          Container(
-              width: 45,
-              height: 45,
-              decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: new DecorationImage(
-                      fit: BoxFit.fill, image: AssetImage(_image)))),
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.fromLTRB(24, 0, 0, 0),
-            child: Text(_name),
-          )),
-          AnimatedBuilder(
-            animation: _currentController,
-            builder: _buildAnimationButton,
-          ),
-        ]),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          _animateChange();
+        },
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+          child: Row(children: <Widget>[
+            Container(
+                width: 45,
+                height: 45,
+                decoration: new BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: new DecorationImage(
+                        fit: BoxFit.fill, image: AssetImage(_image)))),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 0, 0),
+              child: Text(_name),
+            )),
+            AnimatedBuilder(
+              animation: _currentController,
+              builder: _buildAnimationButton,
+            ),
+          ]),
+        ),
       ),
     );
   }
