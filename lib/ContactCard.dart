@@ -37,15 +37,15 @@ class ContactCardState extends State<ContactCard> {
             Expanded(
               child: ListView(
                 children: <Widget>[
-                  Contact('Raf', 'assets/rafaelle.jpg'),
-                  Contact('Alizouz', 'assets/alizee.jpg'),
-                  Contact('Brandone', 'assets/brm.jpg'),
-                  Contact('Bénoit', 'assets/bej.jpg'),
-                  Contact('Juju', 'assets/juliette.jpg'),
-                  Contact('Benoit', 'assets/bme.jpg'),
-                  Contact('Maribibi', 'assets/marie.jpg'),
-                  Contact('Danyboy', 'assets/danyboy.jpg'),
-                  Contact('Cyril', 'assets/cyril.jpg'),
+                  Contact('Raf', 'assets/rafaelle.jpg', _onContactSelected),
+                  Contact('Alizouz', 'assets/alizee.jpg', _onContactSelected),
+                  Contact('Brandone', 'assets/brm.jpg', _onContactSelected),
+                  Contact('Bénoit', 'assets/bej.jpg', _onContactSelected),
+                  Contact('Juju', 'assets/juliette.jpg', _onContactSelected),
+                  Contact('Benoit', 'assets/bme.jpg', _onContactSelected),
+                  Contact('Maribibi', 'assets/marie.jpg', _onContactSelected),
+                  Contact('Danyboy', 'assets/danyboy.jpg', _onContactSelected),
+                  Contact('Cyril', 'assets/cyril.jpg', _onContactSelected),
                 ],
               ),
             )
@@ -53,5 +53,9 @@ class ContactCardState extends State<ContactCard> {
         ),
       ),
     );
+  }
+
+  void _onContactSelected(bool isSelected, String name, String image) {
+
   }
 }

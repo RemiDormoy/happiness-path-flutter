@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:happiness_path/splashPager.dart';
 
 const double pi = 3.1415926535897932;
