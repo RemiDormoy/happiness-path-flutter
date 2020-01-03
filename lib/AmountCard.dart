@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'AmountCardContent.dart';
+
 class AmountCard extends StatefulWidget {
   AmountCardState _amountCardState;
 
@@ -59,6 +61,9 @@ class AmountCardState extends State<AmountCard>
                   topLeft: Radius.circular(15),
                   topRight: Radius.circular(15),
                 ),
+              ),
+              child: GestureDetector(
+                child: AmountCardContent(),
               ),
             ),
           ),
