@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'AmountCard.dart';
 import 'ContactCard.dart';
+import 'ValidationCard.dart';
 
 class TransfersPage extends StatelessWidget {
 
   AmountCard _amountCard;
+  ValidationCard _validationCard;
 
   @override
   Widget build(BuildContext context) {
-    _amountCard = AmountCard();
+    _amountCard = AmountCard(_onAmountValidated);
+    _validationCard = ValidationCard();
     return Scaffold(
         body: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +29,8 @@ class TransfersPage extends StatelessWidget {
             child: Stack(
           children: <Widget>[
             ContactCard(_onContactValidateds),
-            _amountCard
+            _amountCard,
+            _validationCard
           ],
         )),
       ],
@@ -35,5 +39,9 @@ class TransfersPage extends StatelessWidget {
 
   void _onContactValidateds() {
     _amountCard.makeAppearance();
+  }
+
+  void _onAmountValidated() {
+    _validationCard.makeAppearance();
   }
 }

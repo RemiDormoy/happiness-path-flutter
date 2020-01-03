@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:happiness_path/colors.dart';
 
-class AmountCardContent extends StatelessWidget {
+import 'colors.dart';
 
-  AmountChosenCallback _callback;
-
-  AmountCardContent(this._callback);
-
+class ValidationCardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: ConstrainedBox(
         constraints:
-            BoxConstraints(maxHeight: MediaQuery.of(context).size.height - 100),
+            BoxConstraints(maxHeight: MediaQuery.of(context).size.height - 140),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 16, 16, 2),
               child: Text(
-                'Montant',
+                'Motif',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
@@ -31,28 +27,32 @@ class AmountCardContent extends StatelessWidget {
                   children: <Widget>[
                     ConstrainedBox(
                       constraints:
-                          const BoxConstraints(minWidth: double.infinity),
+                      const BoxConstraints(minWidth: double.infinity),
                       child: TextField(
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 30),
+                            fontWeight: FontWeight.bold, fontSize: 20),
                         decoration: InputDecoration(
                             border: UnderlineInputBorder(
                                 borderSide:
-                                    new BorderSide(color: alizouzBlack)),
-                            hintText: '0 €'),
+                                new BorderSide(color: alizouzBlack)),
+                            hintText: 'Virement à Alizée'),
                       ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text('0/120'),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                       child: ConstrainedBox(
                         constraints:
-                            const BoxConstraints(minWidth: double.infinity),
+                        const BoxConstraints(minWidth: double.infinity),
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
                             onTap: () {
-                              _callback();
+                              Navigator.of(context).pushNamed('/operations');
                             },
                             child: Container(
                               height: 52,
@@ -60,16 +60,16 @@ class AmountCardContent extends StatelessWidget {
                                   shape: BoxShape.rectangle,
                                   color: alizouzBlack,
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
+                                  BorderRadius.all(Radius.circular(15))),
                               child: Padding(
                                 padding:
-                                    const EdgeInsets.fromLTRB(16.0, 4, 16, 4),
+                                const EdgeInsets.fromLTRB(16.0, 4, 16, 4),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
                                     Expanded(
                                       child: Text(
-                                        'Suivant',
+                                        "S'authentifier et valider",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(color: Colors.white),
                                       ),
@@ -77,7 +77,7 @@ class AmountCardContent extends StatelessWidget {
                                     IconTheme(
                                       data: new IconThemeData(
                                           color: Colors.white),
-                                      child: Icon(Icons.arrow_forward),
+                                      child: Icon(Icons.fingerprint),
                                     )
                                   ],
                                 ),
@@ -90,12 +90,10 @@ class AmountCardContent extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
     );
   }
 }
-
-typedef AmountChosenCallback = void Function();

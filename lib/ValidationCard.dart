@@ -1,32 +1,28 @@
 import 'package:flutter/material.dart';
 
-import 'AmountCardContent.dart';
+import 'ValidationCardContent.dart';
 
-class AmountCard extends StatefulWidget {
-  AmountCardState _amountCardState;
+class ValidationCard extends StatefulWidget {
+  ValidationCardState _validationCardState;
 
-  AmountChosenCallback _callback;
-
-  AmountCard(this._callback);
+  ValidationCard();
 
   @override
   State<StatefulWidget> createState() {
-    _amountCardState = AmountCardState(_callback);
-    return _amountCardState;
+    _validationCardState = ValidationCardState();
+    return _validationCardState;
   }
 
   void makeAppearance() {
-    _amountCardState.makeAppearance();
+    _validationCardState.makeAppearance();
   }
 }
 
-class AmountCardState extends State<AmountCard>
+class ValidationCardState extends State<ValidationCard>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
-  AmountChosenCallback _callback;
-
-  AmountCardState(this._callback);
+  ValidationCardState();
 
   @override
   void initState() {
@@ -41,7 +37,7 @@ class AmountCardState extends State<AmountCard>
   @override
   Widget build(BuildContext context) {
     final Size layerSize = MediaQuery.of(context).size;
-    final double layerTop = layerSize.height - 100;
+    final double layerTop = layerSize.height - 140;
 
     Animation<RelativeRect> layerAnimation = RelativeRectTween(
       end: RelativeRect.fromLTRB(
@@ -55,7 +51,7 @@ class AmountCardState extends State<AmountCard>
           PositionedTransition(
             rect: layerAnimation,
             child: Container(
-              margin: const EdgeInsets.only(top: 40),
+              margin: const EdgeInsets.only(top: 80),
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 color: Colors.white,
@@ -73,7 +69,7 @@ class AmountCardState extends State<AmountCard>
               child: GestureDetector(
                 onVerticalDragEnd: _onCardDragged,
                 onVerticalDragUpdate: _onCardDragging,
-                child: AmountCardContent(_callback),
+                child: ValidationCardContent(),
               ),
             ),
           ),
