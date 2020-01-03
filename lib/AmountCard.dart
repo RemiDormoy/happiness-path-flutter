@@ -63,6 +63,8 @@ class AmountCardState extends State<AmountCard>
                 ),
               ),
               child: GestureDetector(
+                onVerticalDragEnd: _onCardDragged,
+                onVerticalDragUpdate: _onCardDragging,
                 child: AmountCardContent(),
               ),
             ),
@@ -70,6 +72,15 @@ class AmountCardState extends State<AmountCard>
         ],
       ),
     );
+  }
+
+  void _onCardDragged(DragEndDetails details) {
+    print('drag ended with velocity : ' + details.velocity.toString());
+  }
+
+  void _onCardDragging(DragUpdateDetails details) {
+    print('drag in progress with dy : ' + details.delta.dy.toString());
+    print('drag in progress with distance : ' + details.delta.distance.toString());
   }
 
   @override
