@@ -162,11 +162,11 @@ class ContactState extends State<Contact> with TickerProviderStateMixin {
     )..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           _controller = AnimationController(
-            duration: new Duration(milliseconds: 500),
+            duration: new Duration(milliseconds: 300),
             vsync: this,
           );
           _controller2 = AnimationController(
-            duration: new Duration(milliseconds: 500),
+            duration: new Duration(milliseconds: 300),
             vsync: this,
           );
           setState(() {

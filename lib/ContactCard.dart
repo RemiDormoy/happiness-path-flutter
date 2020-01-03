@@ -32,7 +32,7 @@ class ContactCardState extends State<ContactCard>
   @override
   void initState() {
     _controller = AnimationController(
-      duration: new Duration(milliseconds: 500),
+      duration: new Duration(milliseconds: 300),
       vsync: this,
     );
   }

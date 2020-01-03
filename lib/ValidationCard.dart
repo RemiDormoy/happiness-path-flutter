@@ -68,7 +68,6 @@ class ValidationCardState extends State<ValidationCard>
               ),
               child: GestureDetector(
                 onVerticalDragEnd: _onCardDragged,
-                onVerticalDragUpdate: _onCardDragging,
                 child: ValidationCardContent(),
               ),
             ),
@@ -79,12 +78,9 @@ class ValidationCardState extends State<ValidationCard>
   }
 
   void _onCardDragged(DragEndDetails details) {
-    print('drag ended with velocity : ' + details.velocity.toString());
-  }
-
-  void _onCardDragging(DragUpdateDetails details) {
-    print('drag in progress with dy : ' + details.delta.dy.toString());
-    print('drag in progress with distance : ' + details.delta.distance.toString());
+    if (details.velocity.pixelsPerSecond.dy > 300) {
+      makeAppearance();
+    }
   }
 
   @override

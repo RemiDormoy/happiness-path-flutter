@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:happiness_path/colors.dart';
 
 class AmountCardContent extends StatelessWidget {
-
   AmountChosenCallback _callback;
 
   AmountCardContent(this._callback);
@@ -10,6 +9,7 @@ class AmountCardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const NeverScrollableScrollPhysics(),
       child: ConstrainedBox(
         constraints:
             BoxConstraints(maxHeight: MediaQuery.of(context).size.height - 100),
