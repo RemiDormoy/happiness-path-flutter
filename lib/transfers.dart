@@ -37,11 +37,11 @@ class TransfersPage extends StatelessWidget {
     ));
   }
 
-  void _onContactValidateds() {
+  void _onContactValidateds(List<ContactYolo> contacts) {
     _amountCard.makeAppearance();
   }
 
-  void _onAmountValidated() {
+  void _onAmountValidated(String amount) {
     _validationCard.makeAppearance();
   }
 }

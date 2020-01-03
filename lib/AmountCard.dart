@@ -41,7 +41,7 @@ class AmountCardState extends State<AmountCard>
   @override
   Widget build(BuildContext context) {
     final Size layerSize = MediaQuery.of(context).size;
-    final double layerTop = layerSize.height - 100;
+    final double layerTop = layerSize.height - 102;
 
     Animation<RelativeRect> layerAnimation = RelativeRectTween(
       end: RelativeRect.fromLTRB(
@@ -55,7 +55,7 @@ class AmountCardState extends State<AmountCard>
           PositionedTransition(
             rect: layerAnimation,
             child: Container(
-              margin: const EdgeInsets.only(top: 40),
+              margin: const EdgeInsets.only(top: 42),
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 color: Colors.white,

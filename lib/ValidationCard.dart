@@ -37,7 +37,7 @@ class ValidationCardState extends State<ValidationCard>
   @override
   Widget build(BuildContext context) {
     final Size layerSize = MediaQuery.of(context).size;
-    final double layerTop = layerSize.height - 140;
+    final double layerTop = layerSize.height - 144;
 
     Animation<RelativeRect> layerAnimation = RelativeRectTween(
       end: RelativeRect.fromLTRB(
@@ -51,7 +51,7 @@ class ValidationCardState extends State<ValidationCard>
           PositionedTransition(
             rect: layerAnimation,
             child: Container(
-              margin: const EdgeInsets.only(top: 80),
+              margin: const EdgeInsets.only(top: 84),
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 color: Colors.white,

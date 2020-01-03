@@ -4,9 +4,7 @@ import 'package:happiness_path/colors.dart';
 import 'Contact.dart';
 
 class ContactCard extends StatefulWidget {
-
   ContactValidatedCallback _callback;
-
 
   ContactCard(this._callback);
 
@@ -14,18 +12,18 @@ class ContactCard extends StatefulWidget {
   State<StatefulWidget> createState() => ContactCardState(_callback);
 }
 
-typedef ContactValidatedCallback = void Function();
+typedef ContactValidatedCallback = void Function(List<ContactYolo>);
 
 class ContactCardState extends State<ContactCard>
     with TickerProviderStateMixin {
   List<ContactYolo> _zobyLaMouche = [];
+  List<ContactYolo> _yoloBis = [];
 
   ContactValidatedCallback _callback;
 
   AnimationController _controller;
 
   Animation<double> _scale;
-
 
   ContactCardState(this._callback);
 
@@ -52,12 +50,48 @@ class ContactCardState extends State<ContactCard>
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(16.0, 16, 16, 2),
-                  child: Text(
-                    'Destinataires',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16.0, 16, 16, 2),
+                      child: Text(
+                        'Destinataires',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 42,
+                        child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: _yoloBis
+                                .map((yolo) => Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: Container(
+                                      width: 40,
+                                      height: 40,
+                                      child: Container(
+                                          width: 40,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  fit: BoxFit.fill,
+                                                  image:
+                                                      AssetImage(yolo.image)))),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.rectangle,
+                                        border: Border.all(
+                                            color: Colors.blueGrey, width: 2),
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(20)),
+                                      ),
+                                    )))
+                                .toList()),
+                      ),
+                    )
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16.0, 2, 16, 16),
@@ -113,7 +147,10 @@ class ContactCardState extends State<ContactCard>
             color: Colors.transparent,
             child: InkWell(
               onTap: () {
-                _callback();
+                _callback(_zobyLaMouche);
+                setState(() {
+                  _yoloBis = _zobyLaMouche.toSet().toList();
+                });
               },
               child: Container(
                 height: 52,
@@ -142,13 +179,14 @@ class ContactCardState extends State<ContactCard>
                                               shape: BoxShape.circle,
                                               image: DecorationImage(
                                                   fit: BoxFit.fill,
-                                                  image: AssetImage(yolo.image)))),
+                                                  image:
+                                                      AssetImage(yolo.image)))),
                                       decoration: BoxDecoration(
                                         shape: BoxShape.rectangle,
-                                        border:
-                                            Border.all(color: Colors.white, width: 2),
-                                        borderRadius:
-                                            BorderRadius.all(Radius.circular(20)),
+                                        border: Border.all(
+                                            color: Colors.white, width: 2),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20)),
                                       ),
                                     )))
                                 .toList()),
@@ -207,13 +245,13 @@ class ContactCardState extends State<ContactCard>
         ),
       ),
     )..addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _controller = AnimationController(
-          duration: new Duration(milliseconds: 300),
-          vsync: this,
-        );
-      }
-    });
+        if (status == AnimationStatus.completed) {
+          _controller = AnimationController(
+            duration: new Duration(milliseconds: 300),
+            vsync: this,
+          );
+        }
+      });
     _controller.forward();
   }
 }

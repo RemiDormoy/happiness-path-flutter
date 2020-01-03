@@ -52,7 +52,7 @@ class AmountCardContent extends StatelessWidget {
                           color: Colors.transparent,
                           child: InkWell(
                             onTap: () {
-                              _callback();
+                              _callback('3 €');
                             },
                             child: Container(
                               height: 52,
@@ -98,4 +98,4 @@ class AmountCardContent extends StatelessWidget {
   }
 }
 
-typedef AmountChosenCallback = void Function();
+typedef AmountChosenCallback = void Function(String);
