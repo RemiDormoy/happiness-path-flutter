@@ -1,10 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_path/colors.dart';
 
-class AmountCardContent extends StatelessWidget {
+class AmountCardContent extends StatefulWidget {
   AmountChosenCallback _callback;
 
   AmountCardContent(this._callback);
+
+  @override
+  State<StatefulWidget> createState() => AmountCardContentState(_callback);
+}
+
+class AmountCardContentState extends State<AmountCardContent> {
+  AmountChosenCallback _callback;
+
+  AmountCardContentState(this._callback);
+
+  String _amountValidated = '';
+
+  TextEditingController _controller;
+
+  @override
+  void initState() {
+    _controller = TextEditingController();
+    _controller
+      ..addListener(() {
+        var amount = _controller.text.replaceAll(' €', '');
+        if (amount.length == 0) {
+          _controller.text = '';
+        } else {
+          var newYolo = amount + ' €';
+          if (newYolo != _controller.text) {
+            _controller.text = newYolo;
+            _controller.selection =
+                TextSelection.fromPosition(TextPosition(offset: amount.length));
+          }
+        }
+      });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +49,26 @@ class AmountCardContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16.0, 16, 16, 2),
-              child: Text(
-                'Montant',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16.0, 16, 2, 2),
+                  child: Text(
+                    'Montant',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 16, 16, 2),
+                    child: Text(
+                      _amountValidated,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                  ),
+                )
+              ],
             ),
             Expanded(
               child: Padding(
@@ -33,7 +80,9 @@ class AmountCardContent extends StatelessWidget {
                       constraints:
                           const BoxConstraints(minWidth: double.infinity),
                       child: TextField(
+                        controller: _controller,
                         textAlign: TextAlign.center,
+                        keyboardType: TextInputType.number,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 30),
                         decoration: InputDecoration(
@@ -52,7 +101,11 @@ class AmountCardContent extends StatelessWidget {
                           color: Colors.transparent,
                           child: InkWell(
                             onTap: () {
-                              _callback('3 €');
+                              var value = _controller.text;
+                              _callback(value);
+                              setState(() {
+                                _amountValidated = ' : ' + value;
+                              });
                             },
                             child: Container(
                               height: 52,
