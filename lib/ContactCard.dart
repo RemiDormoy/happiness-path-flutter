@@ -4,17 +4,30 @@ import 'package:happiness_path/colors.dart';
 import 'Contact.dart';
 
 class ContactCard extends StatefulWidget {
+
+  ContactValidatedCallback _callback;
+
+
+  ContactCard(this._callback);
+
   @override
-  State<StatefulWidget> createState() => ContactCardState();
+  State<StatefulWidget> createState() => ContactCardState(_callback);
 }
+
+typedef ContactValidatedCallback = void Function();
 
 class ContactCardState extends State<ContactCard>
     with TickerProviderStateMixin {
   List<ContactYolo> _zobyLaMouche = [];
 
+  ContactValidatedCallback _callback;
+
   AnimationController _controller;
 
   Animation<double> _scale;
+
+
+  ContactCardState(this._callback);
 
   @override
   void initState() {
@@ -96,49 +109,57 @@ class ContactCardState extends State<ContactCard>
         alignment: FractionalOffset.bottomCenter,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
-          child: Container(
-            height: 52,
-            decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                color: alizouzBlack,
-                borderRadius: BorderRadius.all(Radius.circular(15))),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16.0, 4, 16, 4),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: _zobyLaMouche
-                            .map((yolo) => Padding(
-                                padding: const EdgeInsets.all(2.0),
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
-                                  child: Container(
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () {
+                _callback();
+              },
+              child: Container(
+                height: 52,
+                decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    color: alizouzBlack,
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16.0, 4, 16, 4),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Expanded(
+                        child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: _zobyLaMouche
+                                .map((yolo) => Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: Container(
                                       width: 40,
                                       height: 40,
+                                      child: Container(
+                                          width: 40,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  fit: BoxFit.fill,
+                                                  image: AssetImage(yolo.image)))),
                                       decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                              fit: BoxFit.fill,
-                                              image: AssetImage(yolo.image)))),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.rectangle,
-                                    border:
-                                        Border.all(color: Colors.white, width: 2),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                  ),
-                                )))
-                            .toList()),
+                                        shape: BoxShape.rectangle,
+                                        border:
+                                            Border.all(color: Colors.white, width: 2),
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(20)),
+                                      ),
+                                    )))
+                                .toList()),
+                      ),
+                      IconTheme(
+                        data: new IconThemeData(color: Colors.white),
+                        child: Icon(Icons.arrow_forward),
+                      )
+                    ],
                   ),
-                  IconTheme(
-                    data: new IconThemeData(color: Colors.white),
-                    child: Icon(Icons.arrow_forward),
-                  )
-                ],
+                ),
               ),
             ),
           ),
