@@ -19,7 +19,6 @@ class ContactState extends State<Contact> with TickerProviderStateMixin {
   ContactSelectedCallback _onContactSelected;
   bool _isSelected = false;
   AnimationController _controller;
-  AnimationController _controller2;
   AnimationController _currentController;
   Animation<double> _scale;
 
@@ -29,14 +28,31 @@ class ContactState extends State<Contact> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: new Duration(milliseconds: 500),
-      vsync: this,
-    );
-    _controller2 = AnimationController(
-      duration: new Duration(milliseconds: 500),
+      duration: new Duration(milliseconds: 300),
       vsync: this,
     );
     _currentController = _controller;
+    _scale = Tween<double>(
+      begin: 1.00,
+      end: 0,
+    ).animate(
+      CurvedAnimation(
+        parent: _currentController,
+        curve: Interval(
+          0,
+          1,
+          curve: Curves.easeIn,
+        ),
+      ),
+    )..addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        setState(() {
+          _isSelected = !_isSelected;
+        });
+        _onContactSelected(_isSelected, _name, _image);
+        _controller.reverse();
+      }
+    });
   }
 
   @override
@@ -73,12 +89,6 @@ class ContactState extends State<Contact> with TickerProviderStateMixin {
   }
 
   Widget _buildAnimationButton(BuildContext context, Widget child) {
-    var scaleButton;
-    if (_scale == null) {
-      scaleButton = 1.0;
-    } else {
-      scaleButton = _scale.value;
-    }
     var iconButton;
     if (_isSelected) {
       iconButton = IconButton(
@@ -113,67 +123,14 @@ class ContactState extends State<Contact> with TickerProviderStateMixin {
         ),
       );
     }
-    return Transform.scale(
-      scale: scaleButton,
+    return ScaleTransition(
+      scale: _scale,
+      alignment: Alignment.center,
       child: iconButton,
     );
   }
 
   void _animateChange() {
-    _currentController = _controller;
-    _scale = Tween<double>(
-      begin: 1.00,
-      end: 0,
-    ).animate(
-      CurvedAnimation(
-        parent: _currentController,
-        curve: Interval(
-          0,
-          1,
-          curve: Curves.easeIn,
-        ),
-      ),
-    )..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          setState(() {
-            _isSelected = !_isSelected;
-          });
-          _onContactSelected(_isSelected, _name, _image);
-          _playPhase2();
-        }
-      });
-    _currentController.forward();
-  }
-
-  void _playPhase2() {
-    _currentController = _controller2;
-    _scale = Tween<double>(
-      begin: 0,
-      end: 1,
-    ).animate(
-      CurvedAnimation(
-        parent: _currentController,
-        curve: Interval(
-          0,
-          1,
-          curve: Curves.easeIn,
-        ),
-      ),
-    )..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          _controller = AnimationController(
-            duration: new Duration(milliseconds: 300),
-            vsync: this,
-          );
-          _controller2 = AnimationController(
-            duration: new Duration(milliseconds: 300),
-            vsync: this,
-          );
-          setState(() {
-            _currentController = _controller;
-          });
-        }
-      });
     _currentController.forward();
   }
 }
