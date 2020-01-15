@@ -133,7 +133,7 @@ class ContactCardState extends State<ContactCard>
   Widget _buildButtonAnimation(BuildContext context, Widget child) {
     var scaleButton;
     if (_scale == null) {
-      scaleButton = 0;
+      scaleButton = 0.0;
     } else {
       scaleButton = _scale.value;
     }
@@ -226,11 +226,11 @@ class ContactCardState extends State<ContactCard>
     var end;
     var begin;
     if (isVisible) {
-      end = 1;
-      begin = 0;
+      end = 1.0;
+      begin = 0.0;
     } else {
-      end = 0;
-      begin = 1;
+      end = 0.0;
+      begin = 1.0;
     }
     _scale = Tween<double>(
       begin: begin,

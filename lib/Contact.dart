@@ -75,7 +75,7 @@ class ContactState extends State<Contact> with TickerProviderStateMixin {
   Widget _buildAnimationButton(BuildContext context, Widget child) {
     var scaleButton;
     if (_scale == null) {
-      scaleButton = 1;
+      scaleButton = 1.0;
     } else {
       scaleButton = _scale.value;
     }
