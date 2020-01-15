@@ -33,6 +33,19 @@ class ContactCardState extends State<ContactCard>
       duration: new Duration(milliseconds: 300),
       vsync: this,
     );
+    _scale = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Interval(
+          0,
+          1,
+          curve: Curves.easeIn,
+        ),
+      ),
+    );
   }
 
   @override
@@ -84,8 +97,8 @@ class ContactCardState extends State<ContactCard>
                                         shape: BoxShape.rectangle,
                                         border: Border.all(
                                             color: Colors.blueGrey, width: 2),
-                                        borderRadius:
-                                            BorderRadius.all(Radius.circular(20)),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20)),
                                       ),
                                     )))
                                 .toList()),
@@ -131,14 +144,9 @@ class ContactCardState extends State<ContactCard>
   }
 
   Widget _buildButtonAnimation(BuildContext context, Widget child) {
-    var scaleButton;
-    if (_scale == null) {
-      scaleButton = 0.0;
-    } else {
-      scaleButton = _scale.value;
-    }
-    return Transform.scale(
-      scale: scaleButton,
+    return ScaleTransition(
+      scale: _scale,
+      alignment: Alignment.bottomCenter,
       child: Align(
         alignment: FractionalOffset.bottomCenter,
         child: Padding(
@@ -209,10 +217,10 @@ class ContactCardState extends State<ContactCard>
   void _onContactSelected(bool isSelected, String name, String image) {
     setState(() {
       if (isSelected) {
-        _zobyLaMouche.add(ContactYolo(name, image));
-        if (_zobyLaMouche.length == 1) {
+        if (_zobyLaMouche.length == 0) {
           _animateAppearance(true);
         }
+        _zobyLaMouche.add(ContactYolo(name, image));
       } else {
         _zobyLaMouche.removeWhere((yolo) => yolo.name == name);
         if (_zobyLaMouche.length == 0) {
@@ -223,36 +231,11 @@ class ContactCardState extends State<ContactCard>
   }
 
   void _animateAppearance(bool isVisible) {
-    var end;
-    var begin;
     if (isVisible) {
-      end = 1.0;
-      begin = 0.0;
+      _controller.forward();
     } else {
-      end = 0.0;
-      begin = 1.0;
+      _controller.reverse();
     }
-    _scale = Tween<double>(
-      begin: begin,
-      end: end,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Interval(
-          0,
-          1,
-          curve: Curves.easeIn,
-        ),
-      ),
-    )..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          _controller = AnimationController(
-            duration: new Duration(milliseconds: 300),
-            vsync: this,
-          );
-        }
-      });
-    _controller.forward();
   }
 }
 
