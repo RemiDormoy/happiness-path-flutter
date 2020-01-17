@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:happiness_path/confirmation.dart';
 import 'package:happiness_path/operations.dart';
 import 'package:happiness_path/transfers.dart';
 import 'colors.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/operations' : (context) => OperationsPage(),
         '/transfers' : (context) => TransfersPage(),
+        '/confirmation' : (context) => ConfirmationPage(),
       },
     );
   }

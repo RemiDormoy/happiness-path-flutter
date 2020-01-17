@@ -22,24 +22,27 @@ class OperationHeader extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    IconButton(
-                      iconSize: 30,
-                      icon: IconTheme(
-                        data: new IconThemeData(color: Colors.white),
-                        child: Icon(Icons.menu),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+                  child: Row(
+                    children: <Widget>[
+                      IconButton(
+                        iconSize: 30,
+                        icon: IconTheme(
+                          data: new IconThemeData(color: Colors.white),
+                          child: Icon(Icons.menu),
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Text(''),
-                    ),
-                    IconButton(
-                      iconSize: 30,
-                      icon:
-                          Image(image: AssetImage('assets/logo_app_yolo.png')),
-                    )
-                  ],
+                      Expanded(
+                        child: Text(''),
+                      ),
+                      IconButton(
+                        iconSize: 30,
+                        icon:
+                            Image(image: AssetImage('assets/logo_app_yolo.png')),
+                      )
+                    ],
+                  ),
                 ),
                 ConstrainedBox(
                   constraints: const BoxConstraints(minWidth: double.infinity),

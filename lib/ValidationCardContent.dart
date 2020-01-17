@@ -53,7 +53,7 @@ class ValidationCardContent extends StatelessWidget {
                           color: Colors.transparent,
                           child: InkWell(
                             onTap: () {
-                              Navigator.of(context).pushNamed('/operations');
+                              Navigator.of(context).pushNamed('/confirmation');
                             },
                             child: Container(
                               height: 52,

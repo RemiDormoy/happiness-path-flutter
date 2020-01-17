@@ -10,7 +10,7 @@ class AmountCardContent extends StatefulWidget {
   State<StatefulWidget> createState() => AmountCardContentState(_callback);
 }
 
-class AmountCardContentState extends State<AmountCardContent> {
+class AmountCardContentState extends State<AmountCardContent> with WidgetsBindingObserver{
   AmountChosenCallback _callback;
 
   AmountCardContentState(this._callback);
@@ -21,15 +21,22 @@ class AmountCardContentState extends State<AmountCardContent> {
 
   @override
   void initState() {
+    WidgetsBinding.instance.addObserver(this);
     _controller = TextEditingController();
     _controller
       ..addListener(() {
         var amount = _controller.text.replaceAll(' €', '');
         if (amount.length == 0) {
-          _controller.text = '';
+          if (_controller.text != '') {
+            _controller.text = '';
+          }
         } else {
           var newYolo = amount + ' €';
           if (newYolo != _controller.text) {
+            var top = MediaQuery.of(context).viewInsets.top;
+            var bottom = MediaQuery.of(context).viewInsets.bottom;
+            var height = MediaQuery.of(context).size.height;
+            print('la top est de $top et le bottom : $bottom et la height $height');
             _controller.text = newYolo;
             _controller.selection =
                 TextSelection.fromPosition(TextPosition(offset: amount.length));
@@ -40,12 +47,30 @@ class AmountCardContentState extends State<AmountCardContent> {
   }
 
   @override
+  void didChangeMetrics() {
+    super.didChangeMetrics();
+    print(('On a changé les metrics'));
+    setState(() {
+
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var top = MediaQuery.of(context).viewInsets.top;
+    var bottom = MediaQuery.of(context).viewInsets.bottom;
+    var height = MediaQuery.of(context).size.height;
+    print('la top est de $top et le bottom : $bottom et la height $height');
     return SingleChildScrollView(
       physics: const NeverScrollableScrollPhysics(),
       child: ConstrainedBox(
-        constraints:
-            BoxConstraints(maxHeight: MediaQuery.of(context).size.height - 100),
+        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height - 100),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

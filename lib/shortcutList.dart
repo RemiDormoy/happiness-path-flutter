@@ -15,7 +15,7 @@ class ShortcutList extends StatelessWidget {
                   Navigator.pushNamed(context, '/transfers');
                 },
                 child:
-                    Shortcut('Virement', alizouzBlue, Icons.compare_arrows)),
+                    Shortcut('Virement', alizouzGreen, Icons.compare_arrows)),
             Shortcut('Mes comptes', actionCardColor, Icons.lock),
             Shortcut('Dashboards', actionCardColor, Icons.lock),
             Shortcut('Mes cartes', actionCardColor, Icons.lock),
@@ -37,12 +37,12 @@ class Shortcut extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 125,
-        width: 140,
+        height: 100,
+        width: 130,
         decoration: BoxDecoration(
             color: _color,
             shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+            borderRadius: BorderRadius.all(Radius.circular(20))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
