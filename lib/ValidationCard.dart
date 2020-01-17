@@ -1,5 +1,9 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'AmountCard.dart';
 import 'ValidationCardContent.dart';
 
 class ValidationCard extends StatefulWidget {
@@ -23,6 +27,8 @@ class ValidationCardState extends State<ValidationCard>
   AnimationController _controller;
 
   ValidationCardState();
+
+  IsOpenModel _model = IsOpenModel();
 
   @override
   void initState() {
@@ -68,7 +74,10 @@ class ValidationCardState extends State<ValidationCard>
               ),
               child: GestureDetector(
                 onVerticalDragEnd: _onCardDragged,
-                child: ValidationCardContent(),
+                child: ChangeNotifierProvider(
+                  create: (_) => _model,
+                  child: ValidationCardContent(),
+                ),
               ),
             ),
           ),
@@ -78,7 +87,7 @@ class ValidationCardState extends State<ValidationCard>
   }
 
   void _onCardDragged(DragEndDetails details) {
-    if (details.velocity.pixelsPerSecond.dy > 300) {
+    if (details.velocity.pixelsPerSecond.dy > 100) {
       makeAppearance();
     }
   }
@@ -97,5 +106,12 @@ class ValidationCardState extends State<ValidationCard>
 
   void makeAppearance() {
     _controller.fling(velocity: _cardVisible ? -2.0 : 2.0);
+    if (_model.isOpen) {
+      _model.switchStatus();
+    } else {
+      Timer(Duration(milliseconds: 500), () {
+        _model.switchStatus();
+      });
+    }
   }
 }

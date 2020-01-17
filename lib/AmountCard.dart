@@ -90,7 +90,7 @@ class AmountCardState extends State<AmountCard>
   }
 
   void _onCardDragged(DragEndDetails details) {
-    if (details.velocity.pixelsPerSecond.dy > 300) {
+    if (details.velocity.pixelsPerSecond.dy > 100) {
       makeAppearance();
     }
   }
