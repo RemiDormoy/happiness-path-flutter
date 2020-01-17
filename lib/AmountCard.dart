@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'AmountCardContent.dart';
 
@@ -27,6 +30,8 @@ class AmountCardState extends State<AmountCard>
   AmountChosenCallback _callback;
 
   AmountCardState(this._callback);
+
+  IsOpenModel _model = IsOpenModel();
 
   @override
   void initState() {
@@ -72,7 +77,10 @@ class AmountCardState extends State<AmountCard>
               ),
               child: GestureDetector(
                 onVerticalDragEnd: _onCardDragged,
-                child: AmountCardContent(_callback),
+                child: ChangeNotifierProvider(
+                  create: (_) => _model,
+                  child: AmountCardContent(_callback),
+                ),
               ),
             ),
           ),
@@ -101,5 +109,21 @@ class AmountCardState extends State<AmountCard>
 
   void makeAppearance() {
     _controller.fling(velocity: _cardVisible ? -2.0 : 2.0);
+    if (_model.isOpen) {
+      _model.switchStatus();
+    } else {
+      Timer(Duration(milliseconds: 500), () {
+        _model.switchStatus();
+      });
+    }
+  }
+}
+
+class IsOpenModel extends ChangeNotifier {
+  bool isOpen = false;
+
+  void switchStatus() {
+    isOpen = !isOpen;
+    notifyListeners();
   }
 }
