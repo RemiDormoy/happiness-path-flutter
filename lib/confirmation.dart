@@ -3,7 +3,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_lottie/flutter_lottie.dart';
+import 'package:happiness_path/bottomSheetYolo.dart';
 import 'package:happiness_path/colors.dart';
+import 'package:happiness_path/notification.dart';
 
 class ConfirmationPage extends StatefulWidget {
   @override
@@ -45,33 +47,73 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Expanded(
-              child: logo,
-            ),
-            Material(
-              color: Colors.transparent,
-              child: Container(
-                height: 52,
-                decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16.0, 4, 16, 4),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          "Retour acceuil",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: colorPrimaryDark),
-                        ),
-                      ),
-                    ],
+              flex: 1,
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: GestureDetector(
+                  onTap: () {
+                    showBottomSheetForPattern(
+                        context, Pattern.KEEP_THEM_WAITING);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: NotificationTrends(),
                   ),
                 ),
               ),
-            )
+            ),
+            Expanded(
+              flex: 3,
+              child: logo,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                GestureDetector(
+                  onTap: () {
+                    showBottomSheetForPattern(context, Pattern.GRATIFICATION);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: NotificationTrends(),
+                  ),
+                ),
+                SendText(),
+                Container(
+                  width: 40,
+                )
+              ],
+            ),
+            Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/operations');
+                },
+                child: Container(
+                  height: 52,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(15))),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(16.0, 4, 16, 4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            "Retour accueil",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: colorPrimaryDark),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -87,5 +129,34 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
   void dispose() {
     super.dispose();
     _newProgressStream.close();
+  }
+}
+
+class SendText extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _SendTextState();
+  }
+}
+
+class _SendTextState extends State<SendText> {
+  String _text = "Envoi en cours...";
+
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(milliseconds: 2500), () {
+      setState(() {
+        _text = "Bravo ! Virement réussi !";
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      _text,
+      style: TextStyle(color: Colors.white),
+    );
   }
 }

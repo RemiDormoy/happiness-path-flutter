@@ -94,7 +94,7 @@ class OperationList extends StatelessWidget {
               ],
             ),
           );
-        } else if (position == 7 && position == 20) {
+        } else if (position == 7) {
           return ActionCell('Complétez votre profil !', Icons.card_giftcard);
         } else if (position == 12) {
           return ActionCell('Découvrez notre coach financier', Icons.favorite);

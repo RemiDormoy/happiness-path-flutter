@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_path/bottomSheetYolo.dart';
 import 'package:happiness_path/colors.dart';
+import 'package:happiness_path/notification.dart';
 
 class EndOfListCell extends StatelessWidget {
   @override
@@ -27,6 +28,10 @@ class EndOfListCell extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8.0, 2, 8, 2),
+              child: NotificationTrends(),
             ),
             Container(
               width: 40,

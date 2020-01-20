@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'AmountCard.dart';
+import 'bottomSheetYolo.dart';
 import 'colors.dart';
+import 'notification.dart';
 
 class ValidationCardContent extends StatelessWidget {
   @override
@@ -19,12 +21,27 @@ class ValidationCardContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16.0, 16, 16, 2),
-            child: Text(
-              'Motif',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16.0, 16, 16, 2),
+                  child: Text(
+                    'Motif',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  showBottomSheetForPattern(context, Pattern.GESTURES);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: NotificationTrends(),
+                ),
+              ),
+            ],
           ),
           Expanded(
             child: Padding(
@@ -91,6 +108,15 @@ class ValidationCardContent extends StatelessWidget {
                           ),
                         ),
                       ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      showBottomSheetForPattern(context, Pattern.FINGERPRINT);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: NotificationTrends(),
                     ),
                   ),
                 ],

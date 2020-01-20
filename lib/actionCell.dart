@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:happiness_path/bottomSheetYolo.dart';
 import 'package:happiness_path/colors.dart';
 
+import 'notification.dart';
+
 class ActionCell extends StatelessWidget {
   String _label;
   IconData _icon;
@@ -38,6 +40,10 @@ class ActionCell extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(20.0, 0, 20, 0),
                           child: Text(_label, style: TextStyle(color: Colors.white),),
                         ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: NotificationTrends(),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
