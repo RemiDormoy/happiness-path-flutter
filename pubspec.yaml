@@ -64,7 +64,16 @@ flutter:
    - assets/marie.jpg
    - assets/megane.jpg
    - assets/rafaelle.jpg
+   - assets/augmented_listes.png
    - assets/success.json
+   - assets/attente.png
+   - assets/gratifier.png
+   - assets/simple_auth.png
+   - assets/gestures.png
+   - assets/humane_design.png
+   - assets/personaliser.png
+   - assets/bottom_bouttons.png
+   - assets/borderless.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

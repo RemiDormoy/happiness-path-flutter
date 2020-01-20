@@ -27,7 +27,10 @@ class MyApp extends StatelessWidget {
   ThemeData _buildTheme(BuildContext context) {
     final ThemeData base = ThemeData(
       brightness: Brightness.light,
-      textTheme: GoogleFonts.dMSansTextTheme(Theme.of(context).textTheme)
+      textTheme: GoogleFonts.dMSansTextTheme(Theme.of(context).textTheme),
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: Colors.transparent
+      )
     );
     return base.copyWith(
       primaryColor: colorPrimaryDark,

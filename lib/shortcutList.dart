@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happiness_path/bottomSheetYolo.dart';
 
 import 'colors.dart';
 
@@ -16,7 +17,12 @@ class ShortcutList extends StatelessWidget {
                 },
                 child:
                     Shortcut('Virement', alizouzGreen, Icons.compare_arrows)),
-            Shortcut('Mes comptes', actionCardColor, Icons.lock),
+            GestureDetector(
+              onTap: () {
+                showBottomSheetForPattern(context, Pattern.SIMPLE_ACCESS);
+              },
+              child: Shortcut('Mes comptes', actionCardColor, Icons.lock),
+            ),
             Shortcut('Dashboards', actionCardColor, Icons.lock),
             Shortcut('Mes cartes', actionCardColor, Icons.lock),
           ],
