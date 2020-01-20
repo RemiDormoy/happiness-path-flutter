@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:happiness_path/AmountCardContent.dart';
+import 'package:happiness_path/ValidationCardContent.dart';
 
 import 'AmountCard.dart';
 import 'ContactCard.dart';
 import 'ValidationCard.dart';
 
 class TransfersPage extends StatelessWidget {
-
-  AmountCard _amountCard;
-  ValidationCard _validationCard;
+  BuildContext _context;
 
   @override
   Widget build(BuildContext context) {
-    _amountCard = AmountCard(_onAmountValidated);
-    _validationCard = ValidationCard();
+    _context = context;
     return Scaffold(
         body: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,19 +28,65 @@ class TransfersPage extends StatelessWidget {
             child: Stack(
           children: <Widget>[
             ContactCard(_onContactValidateds),
-            _amountCard,
-            _validationCard
           ],
         )),
       ],
     ));
   }
 
-  void _onContactValidateds(List<ContactYolo> contacts) {
-    _amountCard.makeAppearance();
+  void _onContactValidateds(BuildContext context) {
+    showBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return FractionallySizedBox(
+            heightFactor: 1.0,
+            child: Container(
+              margin: const EdgeInsets.only(top: 152),
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 8.0,
+                  ),
+                ],
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+              ),
+              child: AmountCardContent(_onAmountValidated),
+            ),
+          );
+        });
   }
 
-  void _onAmountValidated(String amount) {
-    _validationCard.makeAppearance();
+  void _onAmountValidated(String amount, BuildContext context) {
+    showBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return FractionallySizedBox(
+            heightFactor: 1.0,
+            child: Container(
+              margin: const EdgeInsets.only(top: 194),
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 8.0,
+                  ),
+                ],
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+              ),
+              child: ValidationCardContent(),
+            ),
+          );
+        });
   }
 }

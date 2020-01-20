@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:happiness_path/bottomSheetYolo.dart';
 import 'package:happiness_path/colors.dart';
 import 'package:happiness_path/notification.dart';
-import 'package:provider/provider.dart';
-
-import 'AmountCard.dart';
 
 class AmountCardContent extends StatefulWidget {
   AmountChosenCallback _callback;
@@ -23,22 +20,7 @@ class AmountCardContentState extends State<AmountCardContent>
 
   @override
   Widget build(BuildContext context) {
-    var isOpen = Provider.of<IsOpenModel>(context).isOpen;
-    print('je suis open : ${isOpen.toString()}');
-    return Consumer<IsOpenModel>(
-      builder: _buildStuff,
-    );
-  }
-
-  Widget _buildStuff(BuildContext context, IsOpenModel model, Widget widget) {
-    if (model.isOpen) {
-      return NotScrollableAmountCardContent(_callback);
-    } else {
-      return SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        child: NotScrollableAmountCardContent(_callback),
-      );
-    }
+    return NotScrollableAmountCardContent(_callback);
   }
 }
 
@@ -167,7 +149,7 @@ class _NotScrollableAmountCardContentState
                         child: InkWell(
                           onTap: () {
                             var value = _controller.text;
-                            _callback(value);
+                            _callback(value, context);
                             setState(() {
                               _amountValidated = ' : ' + value;
                             });
@@ -222,4 +204,4 @@ class _NotScrollableAmountCardContentState
   }
 }
 
-typedef AmountChosenCallback = void Function(String);
+typedef AmountChosenCallback = void Function(String, BuildContext);

@@ -12,7 +12,7 @@ class ContactCard extends StatefulWidget {
   State<StatefulWidget> createState() => ContactCardState(_callback);
 }
 
-typedef ContactValidatedCallback = void Function(List<ContactYolo>);
+typedef ContactValidatedCallback = void Function(BuildContext context);
 
 class ContactCardState extends State<ContactCard>
     with TickerProviderStateMixin {
@@ -155,7 +155,7 @@ class ContactCardState extends State<ContactCard>
             color: Colors.transparent,
             child: InkWell(
               onTap: () {
-                _callback(_zobyLaMouche);
+                _callback(context);
                 setState(() {
                   _yoloBis = _zobyLaMouche.toSet().toList();
                 });

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import 'AmountCard.dart';
 import 'bottomSheetYolo.dart';
 import 'colors.dart';
 import 'notification.dart';
@@ -9,13 +7,7 @@ import 'notification.dart';
 class ValidationCardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<IsOpenModel>(
-      builder: _buildStuff,
-    );
-  }
-
-  Widget _buildStuff(BuildContext context, IsOpenModel model, Widget widget) {
-    Widget notScrollableContent = ConstrainedBox(
+    return ConstrainedBox(
       constraints:
           BoxConstraints(maxHeight: MediaQuery.of(context).size.height - 140),
       child: Column(
@@ -126,14 +118,5 @@ class ValidationCardContent extends StatelessWidget {
         ],
       ),
     );
-    print('je suis open : ${model.isOpen}');
-    if (model.isOpen) {
-      return notScrollableContent;
-    } else {
-      return SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        child: notScrollableContent,
-      );
-    }
   }
 }
