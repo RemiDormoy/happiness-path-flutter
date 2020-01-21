@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:happiness_path/colors.dart';
 
+import 'ContactDialog.dart';
 import 'OperationCurve.dart';
 
 class OperationHeader extends StatelessWidget {
@@ -40,9 +41,17 @@ class OperationHeader extends StatelessWidget {
                         child: Text(''),
                       ),
                       IconButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return ContactDialog();
+                            },
+                          );
+                        },
                         iconSize: 30,
-                        icon:
-                            Image(image: AssetImage('assets/logo_app_yolo.png')),
+                        icon: Image(
+                            image: AssetImage('assets/logo_app_yolo.png')),
                       )
                     ],
                   ),
