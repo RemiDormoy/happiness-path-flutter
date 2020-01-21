@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lottie/flutter_lottie.dart';
 import 'package:happiness_path/bottomSheetYolo.dart';
@@ -25,7 +26,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
   @override
   Widget build(BuildContext context) {
     Widget logo;
-    if (Platform.isAndroid || Platform.isIOS) {
+    if (!kIsWeb /*&& Platform.isAndroid || Platform.isIOS*/) {
       logo = LottieView.fromFile(
         filePath: "assets/success.json",
         autoPlay: true,
@@ -34,10 +35,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
         onViewCreated: onViewCreatedFile,
       );
     } else {
-      logo = IconTheme(
-        data: new IconThemeData(color: alizouzGreen),
-        child: Icon(Icons.check_circle),
-      );
+      logo = WebLoaderCheck();
     }
 
     return Scaffold(
@@ -158,5 +156,39 @@ class _SendTextState extends State<SendText> {
       _text,
       style: TextStyle(color: Colors.white),
     );
+  }
+}
+
+class WebLoaderCheck extends StatefulWidget {
+  @override
+  _WebLoaderCheckState createState() => _WebLoaderCheckState();
+}
+
+class _WebLoaderCheckState extends State<WebLoaderCheck> {
+  bool _isLoaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(milliseconds: 2500), () {
+      setState(() {
+        _isLoaded = true;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_isLoaded) {
+      return IconTheme(
+        data: new IconThemeData(color: alizouzGreen, size: 120),
+        child: Icon(Icons.check_circle),
+      );
+    } else {
+      return Center(
+        child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation(alizouzGreen), strokeWidth: 5.0),
+      );
+    }
   }
 }

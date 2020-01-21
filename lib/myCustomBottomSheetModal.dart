@@ -11,7 +11,7 @@ import 'package:flutter/widgets.dart';
 
 import 'colors.dart';
 
-const Duration _bottomSheetDuration = Duration(milliseconds: 300);
+const Duration _bottomSheetDuration = Duration(milliseconds: 400);
 const double _minFlingVelocity = 700.0;
 const double _closeProgressThreshold = 0.5;
 

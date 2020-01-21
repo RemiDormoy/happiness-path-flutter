@@ -6,7 +6,6 @@ import 'ContactCard.dart';
 import 'myCustomBottomSheetModal.dart';
 
 class TransfersPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
