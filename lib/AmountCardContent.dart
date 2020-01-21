@@ -37,6 +37,7 @@ class NotScrollableAmountCardContent extends StatefulWidget {
 class _NotScrollableAmountCardContentState
     extends State<NotScrollableAmountCardContent> {
   String _amountValidated = '';
+  bool _amountValid = false;
 
   TextEditingController _controller;
   AmountChosenCallback _callback;
@@ -53,7 +54,17 @@ class _NotScrollableAmountCardContentState
           if (_controller.text != '') {
             _controller.text = '';
           }
+          if (_amountValid) {
+            setState(() {
+              _amountValid = false;
+            });
+          }
         } else {
+          if (!_amountValid) {
+            setState(() {
+              _amountValid = true;
+            });
+          }
           var newYolo = amount + ' €';
           if (newYolo != _controller.text) {
             var top = MediaQuery.of(context).viewInsets.top;
@@ -72,6 +83,21 @@ class _NotScrollableAmountCardContentState
 
   @override
   Widget build(BuildContext context) {
+    var onTapButton;
+    var buttonColor;
+    if (_amountValid) {
+      buttonColor = alizouzBlack;
+      onTapButton = () {
+        var value = _controller.text;
+        _callback(value, context);
+        setState(() {
+          _amountValidated = ' : ' + value;
+        });
+      };
+    } else {
+      buttonColor = alizouzGrey;
+      onTapButton = () {};
+    }
     return ConstrainedBox(
       constraints:
           BoxConstraints(maxHeight: MediaQuery.of(context).size.height - 100),
@@ -147,18 +173,12 @@ class _NotScrollableAmountCardContentState
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
-                          onTap: () {
-                            var value = _controller.text;
-                            _callback(value, context);
-                            setState(() {
-                              _amountValidated = ' : ' + value;
-                            });
-                          },
+                          onTap: onTapButton,
                           child: Container(
                             height: 52,
                             decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
-                                color: alizouzBlack,
+                                color: buttonColor,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(15))),
                             child: Padding(
