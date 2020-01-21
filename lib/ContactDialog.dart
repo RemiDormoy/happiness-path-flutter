@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'colors.dart';
 
@@ -26,24 +27,24 @@ class ContactDialog extends StatelessWidget {
                 "Qui se cache derrière cette appli ?\nUne communauté d'experts fondée sur le partage et la bienveillance : les Octos !",
                 textAlign: TextAlign.center,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 16, 8, 8),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {
-                      print('TODO rediriger vers octo.com');
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: alizouzBlack,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(40, 12, 40, 12),
-                        child: Text(
-                          'Découvrir OCTO',
-                          style: TextStyle(color: Colors.white),
-                        ),
+              GestureDetector(
+                onTap: () async {
+                  final String url = "https://www.octo.com";
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  }
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 16, 8, 8),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: alizouzBlack,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(40, 12, 40, 12),
+                      child: Text(
+                        'Découvrir OCTO',
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
