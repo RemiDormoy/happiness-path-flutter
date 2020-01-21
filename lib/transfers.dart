@@ -31,9 +31,10 @@ class TransfersPage extends StatelessWidget {
   }
 
   void _onContactValidateds(BuildContext context) {
-    showModalBottomSheet<dynamic>(
-        isScrollControlled: true,
+    showBottomSheet(
+        //isScrollControlled: true,
         context: context,
+        //backgroundColor: Colors.black.withOpacity(0),
         builder: (BuildContext context) {
           return FractionallySizedBox(
             heightFactor: 1.0,
