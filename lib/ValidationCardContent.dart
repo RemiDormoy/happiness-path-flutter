@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:local_auth/auth_strings.dart';
+import 'package:local_auth/local_auth.dart';
 
 import 'bottomSheetYolo.dart';
 import 'colors.dart';
@@ -67,7 +70,26 @@ class ValidationCardContent extends StatelessWidget {
                         color: Colors.transparent,
                         child: InkWell(
                           onTap: () {
-                            Navigator.of(context).pushNamed('/confirmation');
+                            if (kIsWeb) {
+                              Navigator.of(context).pushNamed('/confirmation');
+                            } else {
+                              var localAuth = LocalAuthentication();
+                              localAuth
+                                  .authenticateWithBiometrics(
+                                      localizedReason:
+                                          "Authentifiez vous pour valider le virement",
+                                      androidAuthStrings: AndroidAuthMessages(
+                                          signInTitle:
+                                              'Ceci est une authentification sécurisée',
+                                          fingerprintRequiredTitle:
+                                              'Ceci est une authentification sécurisée'))
+                                  .then((value) {
+                                if (value) {
+                                  Navigator.of(context)
+                                      .pushNamed('/confirmation');
+                                }
+                              });
+                            }
                           },
                           child: Container(
                             height: 52,
