@@ -12,6 +12,50 @@ void showBottomSheetForPattern(BuildContext context, Pattern pattern) {
       isScrollControlled: true,
       context: context,
       builder: (BuildContext bc) {
+        var content;
+        if (MediaQuery.of(context).size.height > MediaQuery.of(context).size.width) {
+          content = Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ConstrainedBox(
+                  constraints:
+                  const BoxConstraints(minWidth: double.infinity),
+                  child: Image(
+                      image: AssetImage(pattern.image)),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(pattern.content),
+              ),
+            ],
+          );
+        } else {
+          content = Row(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ConstrainedBox(
+                    constraints:
+                    const BoxConstraints(minWidth: double.infinity),
+                    child: Image(
+                        image: AssetImage(pattern.image)),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(pattern.content),
+                ),
+              ),
+            ],
+          );
+        }
         return FractionallySizedBox(
           heightFactor: 0.7,
           child: Container(
@@ -68,23 +112,7 @@ void showBottomSheetForPattern(BuildContext context, Pattern pattern) {
                       ))
                     ],
                   ),
-                  Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ConstrainedBox(
-                          constraints:
-                              const BoxConstraints(minWidth: double.infinity),
-                          child: Image(
-                              image: AssetImage(pattern.image)),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(pattern.content),
-                      ),
-                    ],
-                  ),
+                  content,
                 ],
               ),
             ),
