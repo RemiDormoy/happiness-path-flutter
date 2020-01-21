@@ -3,6 +3,7 @@ import 'package:happiness_path/AmountCardContent.dart';
 import 'package:happiness_path/ValidationCardContent.dart';
 
 import 'ContactCard.dart';
+import 'myCustomBottomSheetModal.dart';
 
 class TransfersPage extends StatelessWidget {
 
@@ -31,10 +32,9 @@ class TransfersPage extends StatelessWidget {
   }
 
   void _onContactValidateds(BuildContext context) {
-    showBottomSheet(
-        //isScrollControlled: true,
+    showModalBottomSheetWithoutBarreer<dynamic>(
+        isScrollControlled: true,
         context: context,
-        //backgroundColor: Colors.black.withOpacity(0),
         builder: (BuildContext context) {
           return FractionallySizedBox(
             heightFactor: 1.0,
@@ -61,7 +61,7 @@ class TransfersPage extends StatelessWidget {
   }
 
   void _onAmountValidated(String amount, BuildContext context) {
-    showModalBottomSheet<dynamic>(
+    showModalBottomSheetWithoutBarreer<dynamic>(
         isScrollControlled: true,
         context: context,
         builder: (BuildContext context) {
