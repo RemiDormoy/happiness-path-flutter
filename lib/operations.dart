@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_path/OperationList.dart';
+import 'package:happiness_path/bottomSheetYolo.dart';
 import 'package:happiness_path/patternsDrawer.dart';
 
 import 'ContactDialog.dart';
@@ -27,6 +28,11 @@ class OperationsPageState extends State<OperationsPage> {
         );
       });
       print('yolo la pop up');
+    } else if (args != null && args.patternToLaunch != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        showBottomSheetForPattern(context, args.patternToLaunch);
+        args.patternToLaunch = null;
+      });
     }
     return Scaffold(
       body: Column(
@@ -64,6 +70,7 @@ class OperationsPageState extends State<OperationsPage> {
 
 class OperationsArguments {
   bool showPopUpOnLaunch;
+  Pattern patternToLaunch;
 
-  OperationsArguments([this.showPopUpOnLaunch = false]);
+  OperationsArguments([this.showPopUpOnLaunch = false, this.patternToLaunch]);
 }

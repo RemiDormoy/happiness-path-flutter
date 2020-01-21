@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_path/AmountCardContent.dart';
 import 'package:happiness_path/ValidationCardContent.dart';
+import 'package:happiness_path/patternsDrawer.dart';
 
 import 'ContactCard.dart';
+import 'bottomSheetYolo.dart';
 import 'myCustomBottomSheetModal.dart';
 
 class TransfersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final TransfertsArguments args = ModalRoute.of(context).settings.arguments;
+    if (args != null && args.patternToLaunch != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        showBottomSheetForPattern(context, args.patternToLaunch);
+        args.patternToLaunch = null;
+      });
+    }
     return Scaffold(
+        drawer: FractionallySizedBox(
+          widthFactor: 0.8,
+          child: PatternsDrawer(),
+        ),
         body: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -88,3 +101,10 @@ class TransfersPage extends StatelessWidget {
         });
   }
 }
+
+class TransfertsArguments {
+  Pattern patternToLaunch;
+
+  TransfertsArguments([this.patternToLaunch]);
+}
+

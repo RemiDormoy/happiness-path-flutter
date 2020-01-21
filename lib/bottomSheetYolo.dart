@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_path/colors.dart';
+import 'package:happiness_path/transfers.dart';
+import 'package:happiness_path/transfers.dart';
+import 'package:happiness_path/transfers.dart';
+import 'package:happiness_path/transfers.dart';
+
+import 'operations.dart';
 
 void showBottomSheetForPattern(BuildContext context, Pattern pattern) {
   showModalBottomSheet<dynamic>(
@@ -212,6 +218,65 @@ extension PatternExtension on Pattern {
         return alizouzFushia;
       case Pattern.INFINITE_NAV:
         return octoBlue;
+    }
+  }
+
+  void open(BuildContext context) {
+    switch (this) {
+      case Pattern.AUGMENTED_LIST:
+        Navigator.of(context).pushNamed(
+          '/operations',
+          arguments: OperationsArguments(false, this),
+        );
+        break;
+      case Pattern.KEEP_THEM_WAITING:
+        Navigator.of(context).pushNamed(
+          '/confirmation',
+          arguments: TransfertsArguments(this),
+        );
+        break;
+      case Pattern.GRATIFICATION:
+        Navigator.of(context).pushNamed(
+          '/confirmation',
+          arguments: TransfertsArguments(this),
+        );
+        break;
+      case Pattern.FINGERPRINT:
+        Navigator.of(context).pushNamed(
+          '/transfers',
+          arguments: TransfertsArguments(this),
+        );
+        break;
+      case Pattern.GESTURES:
+        Navigator.of(context).pushNamed(
+          '/transfers',
+          arguments: TransfertsArguments(this),
+        );
+        break;
+      case Pattern.HUMANE_DESIGN:
+        Navigator.of(context).pushNamed(
+          '/operations',
+          arguments: OperationsArguments(false, this),
+        );
+        break;
+      case Pattern.SIMPLE_ACCESS:
+        Navigator.of(context).pushNamed(
+          '/operations',
+          arguments: OperationsArguments(false, this),
+        );
+        break;
+      case Pattern.BOTTOM:
+        Navigator.of(context).pushNamed(
+          '/transfers',
+          arguments: TransfertsArguments(this),
+        );
+        break;
+      case Pattern.INFINITE_NAV:
+        Navigator.of(context).pushNamed(
+          '/transfers',
+          arguments: TransfertsArguments(this),
+        );
+        break;
     }
   }
 }

@@ -47,7 +47,7 @@ class PatternsDrawer extends StatelessWidget {
                   color: Colors.transparent,
                   child: InkWell(
                     onTap: () {
-                      print('Je viens de cliquer le pattern : ${patterns[position].title}');
+                      patterns[position].open(context);
                     },
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),

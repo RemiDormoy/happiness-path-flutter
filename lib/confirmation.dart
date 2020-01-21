@@ -8,6 +8,8 @@ import 'package:happiness_path/bottomSheetYolo.dart';
 import 'package:happiness_path/colors.dart';
 import 'package:happiness_path/notification.dart';
 import 'package:happiness_path/operations.dart';
+import 'package:happiness_path/patternsDrawer.dart';
+import 'package:happiness_path/transfers.dart';
 
 class ConfirmationPage extends StatefulWidget {
   @override
@@ -26,6 +28,13 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final TransfertsArguments args = ModalRoute.of(context).settings.arguments;
+    if (args != null && args.patternToLaunch != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        showBottomSheetForPattern(context, args.patternToLaunch);
+        args.patternToLaunch = null;
+      });
+    }
     Widget logo;
     if (!kIsWeb /*&& Platform.isAndroid || Platform.isIOS*/) {
       logo = LottieView.fromFile(
@@ -40,6 +49,10 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
     }
 
     return Scaffold(
+      drawer: FractionallySizedBox(
+        widthFactor: 0.8,
+        child: PatternsDrawer(),
+      ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(40.0, 100.0, 40.0, 100.0),
         child: Column(
