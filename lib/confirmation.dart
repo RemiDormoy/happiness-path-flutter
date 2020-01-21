@@ -7,6 +7,7 @@ import 'package:flutter_lottie/flutter_lottie.dart';
 import 'package:happiness_path/bottomSheetYolo.dart';
 import 'package:happiness_path/colors.dart';
 import 'package:happiness_path/notification.dart';
+import 'package:happiness_path/operations.dart';
 
 class ConfirmationPage extends StatefulWidget {
   @override
@@ -86,7 +87,10 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).pushNamed('/operations');
+                  Navigator.of(context).pushNamed(
+                    '/operations',
+                    arguments: OperationsArguments(true),
+                  );
                 },
                 child: Container(
                   height: 52,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:happiness_path/OperationList.dart';
 import 'package:happiness_path/patternsDrawer.dart';
 
+import 'ContactDialog.dart';
 import 'OperationHeader.dart';
 
 class OperationsPage extends StatefulWidget {
@@ -14,6 +15,19 @@ class OperationsPageState extends State<OperationsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final OperationsArguments args = ModalRoute.of(context).settings.arguments;
+    if (args != null && args.showPopUpOnLaunch) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        args.showPopUpOnLaunch = false;
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return ContactDialog();
+          },
+        );
+      });
+      print('yolo la pop up');
+    }
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -46,4 +60,10 @@ class OperationsPageState extends State<OperationsPage> {
     super.initState();
     _controller = ScrollController();
   }
+}
+
+class OperationsArguments {
+  bool showPopUpOnLaunch;
+
+  OperationsArguments([this.showPopUpOnLaunch = false]);
 }
