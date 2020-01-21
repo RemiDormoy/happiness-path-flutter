@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:happiness_path/AmountCardContent.dart';
 import 'package:happiness_path/ValidationCardContent.dart';
 
-import 'AmountCard.dart';
 import 'ContactCard.dart';
-import 'ValidationCard.dart';
 
 class TransfersPage extends StatelessWidget {
-  BuildContext _context;
 
   @override
   Widget build(BuildContext context) {
-    _context = context;
     return Scaffold(
         body: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +31,8 @@ class TransfersPage extends StatelessWidget {
   }
 
   void _onContactValidateds(BuildContext context) {
-    showBottomSheet(
+    showModalBottomSheet<dynamic>(
+        isScrollControlled: true,
         context: context,
         builder: (BuildContext context) {
           return FractionallySizedBox(
@@ -63,7 +60,8 @@ class TransfersPage extends StatelessWidget {
   }
 
   void _onAmountValidated(String amount, BuildContext context) {
-    showBottomSheet(
+    showModalBottomSheet<dynamic>(
+        isScrollControlled: true,
         context: context,
         builder: (BuildContext context) {
           return FractionallySizedBox(
