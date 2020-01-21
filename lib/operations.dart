@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_path/OperationList.dart';
+import 'package:happiness_path/patternsDrawer.dart';
 
 import 'OperationHeader.dart';
 
@@ -32,6 +33,10 @@ class OperationsPageState extends State<OperationsPage> {
             ),
           ),
         ],
+      ),
+      drawer: FractionallySizedBox(
+        widthFactor: 0.8,
+        child: PatternsDrawer(),
       ),
     );
   }

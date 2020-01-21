@@ -27,6 +27,9 @@ class OperationHeader extends StatelessWidget {
                   child: Row(
                     children: <Widget>[
                       IconButton(
+                        onPressed: () {
+                          Scaffold.of(context).openDrawer();
+                        },
                         iconSize: 30,
                         icon: IconTheme(
                           data: new IconThemeData(color: Colors.white),
