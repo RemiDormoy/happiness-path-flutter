@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_path/colors.dart';
 import 'package:happiness_path/transfers.dart';
-import 'package:happiness_path/transfers.dart';
-import 'package:happiness_path/transfers.dart';
-import 'package:happiness_path/transfers.dart';
 
 import 'operations.dart';
 

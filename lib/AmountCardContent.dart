@@ -149,7 +149,7 @@ class _NotScrollableAmountCardContentState
                           child: TextField(
                             controller: _controller,
                             textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
+                            //keyboardType: TextInputType.numberWithOptions(signed: false, decimal: true),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 30),
                             decoration: InputDecoration(
